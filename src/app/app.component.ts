@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from './services/users.service';
 import { GenresService } from './services/genres.service';
 import { StatesService } from './services/states.service';
+import { UsersListResponse } from './types/users-list-response';
+import { GenresListResponse } from './types/genres-list-response';
+import { StatesListResponse } from './types/states-list-response';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +12,14 @@ import { StatesService } from './services/states.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  userList: any[] = [];
-  genreList: any[] = [];
-  statesList: any[] = [];
+  userList:UsersListResponse = [];
+  genreList: GenresListResponse = [];
+  statesList: StatesListResponse = [];
 
   constructor(
     private readonly _usersService: UsersService,
     private readonly _genresService: GenresService,
-    private readonly _statesService: StatesService,
+    private readonly _statesService: StatesService
   ) {}
 
   ngOnInit() {
@@ -24,19 +27,19 @@ export class AppComponent implements OnInit {
     this.getGenres();
     this.getStates();
   }
-  getStates() {
+  private getStates() {
     this._statesService.getStates().subscribe((statesListResponse) => {
       this.statesList = statesListResponse;
     });
   }
 
-  getGenres() {
+  private getGenres() {
     this._genresService.getGenres().subscribe((genreListResponse) => {
       this.genreList = genreListResponse;
     });
   }
 
-  getUsers() {
+  private getUsers() {
     this._usersService.getUsers().subscribe((userListResponse) => {
       this.userList = userListResponse;
     });
