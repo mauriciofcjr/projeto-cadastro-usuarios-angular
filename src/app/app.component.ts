@@ -14,7 +14,7 @@ import { IUser } from './interfaces/user/user.interface';
 })
 export class AppComponent implements OnInit {
 
-  userSelectd: IUser = {} as IUser;
+  userSelected: IUser = {} as IUser;
   userSelectedIndex: number | undefined;
 
   usersList: UsersListResponse = [];
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     const userFound = this.usersList[userIndex];
 
     if(userFound) {
-      this.userSelectd = structuredClone(userFound);
+      this.userSelected = structuredClone(userFound);
       this.userSelectedIndex = userIndex;
     }
   }
